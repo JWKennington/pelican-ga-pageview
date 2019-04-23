@@ -83,7 +83,7 @@ def get_page_view(generators):
     try:
         scope = ['https://www.googleapis.com/auth/analytics.readonly']
         service = get_service('analytics', 'v3', scope, key_file_path,
-                            service_account_email)
+                              service_account_email)
         profile_id = get_first_profile_id(service)
 
         start_date = generator.settings.get('GA_START_DATE', '2005-01-01')
@@ -91,8 +91,8 @@ def get_page_view(generators):
         metric = generator.settings.get('GA_METRIC', 'ga:pageviews')
 
         result = service.data().ga().get(ids='ga:' + profile_id, start_date=start_date,
-                                        end_date=end_date, max_results=999999, metrics=metric,
-                                        dimensions='ga:pagePath').execute()
+                                         end_date=end_date, max_results=999999, metrics=metric,
+                                         dimensions='ga:pagePath').execute()
         for slug, pv in result['rows']:
             page_view[slug] = int(pv)
 
