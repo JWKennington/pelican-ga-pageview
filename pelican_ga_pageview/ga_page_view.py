@@ -25,7 +25,7 @@ def get_service(api_name, api_version, scope, key_file_location,
     Returns:
       A service that is connected to the specified API.
     """
-    credentials = ServiceAccountCredentials.from_p12_keyfile(service_account_email, key_file_location, scope=scope)
+    credentials = ServiceAccountCredentials.from_p12_keyfile(service_account_email, key_file_location, scopes=scope)
     # credentials = SignedJwtAssertionCredentials(service_account_email, key, scope=scope)
 
     http = credentials.authorize(httplib2.Http())
