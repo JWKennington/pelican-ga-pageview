@@ -1,17 +1,16 @@
-# pelican-ga-pageview
-Google analytics pageview plugin to work with nice blog theme
+Page View using Google Analytics
+================================
 
-
-## Page View using Google Analytics
 If you track your site's page view using Google Analytics, this plugin can pull
 the page view information from your Google Analytics profile and add a
 ``page_view`` attribute to each article and page in your Pelican site. See a
 live example here.
 
-http://jwkennington.com
+http://jhshi.me
 
 
-## Requirements and Setup
+Requirements and Setup
+----------------------
 
 First, follow the `instructions here
 <https://developers.google.com/analytics/devguides/reporting/core/v3/quickstart/service-py>`_
@@ -30,12 +29,13 @@ At this point, you should have:
 
 Finally, install the Google API Python library:
 
-```bash
-pip install --upgrade google-api-python-client
-```
+.. code-block:: bash
+
+    $ pip install --upgrade google-api-python-client
 
 
-## Settings
+Settings
+--------
 
 You need to provide the following information in your Pelican configuration file
 for this plugin to communicate with the Google Analytics API.
@@ -65,19 +65,20 @@ And there is one global context named ``total_page_view``,
 which is the total page view of the entire site.
 
 
-## Note
+Note
+----
 
 If you encounter this error while building:
 
-```bash
-NotImplementedError: PKCS12 format is not supported by the PyCrypto library.
-```
+.. code-block:: bash
+
+    NotImplementedError: PKCS12 format is not supported by the PyCrypto library.
 
 Try convert the ``p12`` file to ``pem`` file:
 
-```bash
-openssl pkcs12 -in client_private.p12 -nodes -nocerts > client_private.pem
-```
+.. code-block:: bash
+
+    $ openssl pkcs12 -in client_private.p12 -nodes -nocerts > client_private.pem
 
 The password should be ``notasecret``.
 
@@ -85,13 +86,10 @@ Then set ``GOOGLE_KEY_FILE`` to be the ``pem`` file just generated.
 
 
 
-## Resources
+Resources
+---------
 
 - `Google Analytics Core Reporting API
   <https://developers.google.com/analytics/devguides/reporting/core/v3/reference>`_
 - `Google Analytics Query Explorer
   <https://ga-dev-tools.appspot.com/query-explorer/>`_
-
-
-## Attribution
-This plugin is based on the [ga_pageview plugin](https://github.com/jhshi/pelican.plugins.ga_page_view)
