@@ -2,7 +2,7 @@ from pelican import signals
 from pelican.generators import ArticlesGenerator, PagesGenerator
 
 from apiclient.discovery import build
-from oauth2client.client import SignedJwtAssertionCredentials
+from oauth2client.service_account import ServiceAccountCredentials
 
 import httplib2
 
@@ -25,13 +25,8 @@ def get_service(api_name, api_version, scope, key_file_location,
     Returns:
       A service that is connected to the specified API.
     """
-
-    f = open(key_file_location, 'rb')
-    key = f.read()
-    f.close()
-
-    credentials = SignedJwtAssertionCredentials(service_account_email, key,
-                                                scope=scope)
+    credentials = ServiceAccountCredentials.from_p12_keyfile(service_account_email, key_file_location, scope=scope)
+    # credentials = SignedJwtAssertionCredentials(service_account_email, key, scope=scope)
 
     http = credentials.authorize(httplib2.Http())
 
